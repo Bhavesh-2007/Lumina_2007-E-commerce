@@ -1,0 +1,7 @@
+{
+  "name": "Lumina ",
+  "description": "A premium, AI-powered e-commerce experience featuring glassmorphism design, real-time cart management, admin analytics, and a Gemini-powered shopping assistant.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
