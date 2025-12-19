@@ -11,7 +11,7 @@ const AIChatbot: React.FC = () => {
     {
       id: 'welcome',
       role: 'model',
-      text: "Hi! I'm Lumi, your personal shopping assistant. Looking for something specific?",
+      text: "Hi! I'm Monty, your personal shopping assistant. Looking for something specific?",
       timestamp: new Date()
     }
   ]);
@@ -64,7 +64,7 @@ const AIChatbot: React.FC = () => {
           <div className="p-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white flex justify-between items-center">
             <div className="flex items-center gap-2">
               <Sparkles size={18} />
-              <span className="font-semibold">Lumi Assistant</span>
+              <span className="font-semibold">Monty Assistant</span>
             </div>
             <button onClick={() => setIsOpen(false)} className="hover:bg-white/20 p-1 rounded-full transition-colors">
               <X size={18} />

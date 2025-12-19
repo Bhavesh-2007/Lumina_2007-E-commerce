@@ -55,7 +55,7 @@ const CreateShop: React.FC = () => {
                   Launch Your Brand
                 </h1>
                 <p className="text-gray-600 dark:text-gray-200">
-                  Join thousands of sellers on Lumina. Setup takes less than 2 minutes.
+                  Join thousands of sellers on Montraa. Setup takes less than 2 minutes.
                 </p>
               </div>
 
@@ -132,7 +132,7 @@ const CreateShop: React.FC = () => {
         
         {/* Bottom text */}
         <p className="text-center text-white/80 dark:text-white/40 mt-6 text-sm font-medium drop-shadow-md">
-          Powered by Lumina Commerce Engine
+          Powered by Montraa Commerce Engine
         </p>
       </div>
     </div>

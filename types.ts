@@ -1,3 +1,4 @@
+
 export interface Review {
   id: number;
   user: string;
@@ -44,7 +45,7 @@ export interface User {
   wishlist: number[];
 }
 
-export type ViewState = 'home' | 'shop' | 'product-details' | 'cart' | 'checkout' | 'admin' | 'profile' | 'create-shop';
+export type ViewState = 'home' | 'shop' | 'product-details' | 'cart' | 'checkout' | 'admin' | 'profile' | 'create-shop' | 'login';
 
 export interface ChatMessage {
   id: string;

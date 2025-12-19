@@ -10,6 +10,7 @@ import AdminDashboard from './pages/AdminDashboard';
 import Checkout from './pages/Checkout';
 import Profile from './pages/Profile';
 import CreateShop from './pages/CreateShop';
+import Login from './pages/Login';
 import { Logo } from './components/Logo';
 
 const AppContent: React.FC = () => {
@@ -25,6 +26,7 @@ const AppContent: React.FC = () => {
       case 'checkout': return <Checkout />;
       case 'profile': return <Profile />;
       case 'create-shop': return <CreateShop />;
+      case 'login': return <Login />;
       default: return <Home />;
     }
   };
@@ -43,7 +45,7 @@ const AppContent: React.FC = () => {
             <div>
               <div className="flex items-center gap-2 mb-4">
                 <Logo className="w-8 h-8" />
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white">Lumina</h3>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white">Montraa</h3>
               </div>
               <p className="text-gray-500 dark:text-gray-400 text-sm">
                 Redefining the shopping experience with AI and modern design.
@@ -77,7 +79,7 @@ const AppContent: React.FC = () => {
             </div>
           </div>
           <div className="border-t border-gray-200 dark:border-gray-800 mt-12 pt-8 text-center text-sm text-gray-500">
-            © 2024 Lumina Store. All rights reserved.
+            © 2024 Montraa Store. All rights reserved.
           </div>
         </div>
       </footer>

@@ -9,13 +9,13 @@ const MOCK_REVIEWS = [
 export const MOCK_PRODUCTS: Product[] = [
   {
     id: 1,
-    name: "Lumina X1 Noise Cancelling Headphones",
+    name: "Montraa X1 Noise Cancelling Headphones",
     price: 299.99,
     category: "Electronics",
     rating: 4.8,
     reviews: 124,
     image: "https://picsum.photos/600/600?random=1",
-    description: "Experience silence like never before with the Lumina X1. Industry-leading noise cancellation meets premium audio fidelity.",
+    description: "Experience silence like never before with the Montraa X1. Industry-leading noise cancellation meets premium audio fidelity.",
     isNew: true,
     specs: {
       "Battery Life": "30 Hours",
@@ -70,7 +70,7 @@ export const MOCK_PRODUCTS: Product[] = [
     isNew: true,
     specs: {
       "Compatibility": "Zigbee, Z-Wave, WiFi",
-      "Voice Assistant": "Lumina AI",
+      "Voice Assistant": "Montraa AI",
       "Power": "USB-C"
     },
     userReviews: [MOCK_REVIEWS[1]]

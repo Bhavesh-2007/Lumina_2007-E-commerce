@@ -19,8 +19,8 @@ const Profile: React.FC = () => {
           Access your order history, manage your wishlist, and update your profile by logging into your account.
         </p>
         <button 
-          onClick={() => { useStore().login(); }} 
-          className="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-full transition-colors"
+          onClick={() => { setView('login'); }} 
+          className="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-full transition-colors shadow-lg"
         >
           Log In / Sign Up
         </button>
@@ -32,14 +32,14 @@ const Profile: React.FC = () => {
   const wishlistItems = MOCK_PRODUCTS.filter(p => user.wishlist.includes(p.id));
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 animate-slide-in">
       <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-8">My Account</h1>
 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
         {/* Sidebar */}
         <div className="space-y-6">
           <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 text-center">
-            <img src={user.avatar} alt={user.name} className="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-blue-50 dark:border-blue-900/20" />
+            <img src={user.avatar} alt={user.name} className="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-blue-50 dark:border-blue-900/20 object-cover" />
             <h2 className="text-xl font-bold text-gray-900 dark:text-white">{user.name}</h2>
             <p className="text-sm text-gray-500 dark:text-gray-400 mb-6">{user.email}</p>
             <button 

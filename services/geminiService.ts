@@ -2,7 +2,6 @@ import { GoogleGenAI } from "@google/genai";
 import { MOCK_PRODUCTS } from '../constants';
 
 // Initialize Gemini
-// Note: In a real production app, ensure this key is secured via backend proxy.
 const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
 const productContext = MOCK_PRODUCTS.map(p => 
@@ -10,7 +9,7 @@ const productContext = MOCK_PRODUCTS.map(p =>
 ).join('\n');
 
 const SYSTEM_INSTRUCTION = `
-You are 'Lumi', the intelligent shopping assistant for the Lumina E-Commerce store.
+You are 'Monty', the intelligent shopping assistant for the Montraa E-Commerce store.
 You are friendly, concise, and helpful.
 Your goal is to help users find products, answer questions about items, and provide styling or technical advice.
 

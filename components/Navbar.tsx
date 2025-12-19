@@ -4,7 +4,7 @@ import { useStore } from '../context/StoreContext';
 import { Logo } from './Logo';
 
 const Navbar: React.FC<{ onOpenCart: () => void }> = ({ onOpenCart }) => {
-  const { cart, isDarkMode, toggleTheme, setView, user, login, logout, searchQuery, setSearchQuery } = useStore();
+  const { cart, isDarkMode, toggleTheme, setView, user, logout, searchQuery, setSearchQuery } = useStore();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
@@ -25,7 +25,7 @@ const Navbar: React.FC<{ onOpenCart: () => void }> = ({ onOpenCart }) => {
           <div className="flex-shrink-0 flex items-center cursor-pointer group" onClick={() => setView('home')}>
             <Logo className="w-9 h-9 mr-2 transition-transform group-hover:scale-105" />
             <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400">
-              Lumina
+              Montraa
             </span>
           </div>
 
@@ -63,10 +63,10 @@ const Navbar: React.FC<{ onOpenCart: () => void }> = ({ onOpenCart }) => {
             
             {user ? (
                <div className="flex items-center gap-2 cursor-pointer" onClick={() => setView('profile')}>
-                 <img src={user.avatar} alt="Profile" className="w-8 h-8 rounded-full border border-gray-300" />
+                 <img src={user.avatar} alt="Profile" className="w-8 h-8 rounded-full border border-gray-300 object-cover" />
                </div>
             ) : (
-              <button onClick={login} className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300">
+              <button onClick={() => setView('login')} className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300">
                 <User size={20} />
               </button>
             )}
@@ -113,13 +113,17 @@ const Navbar: React.FC<{ onOpenCart: () => void }> = ({ onOpenCart }) => {
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             <button onClick={() => { setView('home'); setIsMenuOpen(false); }} className="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800">Home</button>
             <button onClick={() => { setView('shop'); setIsMenuOpen(false); }} className="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800">Shop</button>
-            <button onClick={() => { setView('create-shop'); setIsMenuOpen(false); }} className="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-purple-600 dark:text-purple-400 hover:bg-gray-100 dark:hover:bg-gray-800">Sell on Lumina</button>
+            <button onClick={() => { setView('create-shop'); setIsMenuOpen(false); }} className="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-purple-600 dark:text-purple-400 hover:bg-gray-100 dark:hover:bg-gray-800">Sell on Montraa</button>
             <button onClick={() => { setView('profile'); setIsMenuOpen(false); }} className="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800">My Account</button>
             <button onClick={() => { setView('admin'); setIsMenuOpen(false); }} className="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800">Admin</button>
             <button onClick={toggleTheme} className="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800">
               Toggle Theme
             </button>
-            {user && <button onClick={logout} className="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-red-500 hover:bg-gray-100 dark:hover:bg-gray-800">Sign Out</button>}
+            {user ? (
+               <button onClick={() => { logout(); setIsMenuOpen(false); }} className="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-red-500 hover:bg-gray-100 dark:hover:bg-gray-800">Sign Out</button>
+            ) : (
+               <button onClick={() => { setView('login'); setIsMenuOpen(false); }} className="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-blue-500 hover:bg-gray-100 dark:hover:bg-gray-800">Log In</button>
+            )}
           </div>
         </div>
       )}

@@ -176,7 +176,7 @@ const Home: React.FC = () => {
                 image: "https://randomuser.me/api/portraits/men/32.jpg"
               },
               {
-                text: "Lumina has completely changed how I shop online. The AI assistant actually gives good advice.",
+                text: "Montraa has completely changed how I shop online. The AI assistant actually gives good advice.",
                 author: "Jessica Williams",
                 role: "Fashion Blogger",
                 image: "https://randomuser.me/api/portraits/women/68.jpg"
