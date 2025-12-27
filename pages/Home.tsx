@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { ArrowRight, Truck, Shield, Clock, Star, Quote, Play } from 'lucide-react';
+import { ArrowRight, Truck, Shield, Clock, Star, Quote, CreditCard } from 'lucide-react';
 import { useStore } from '../context/StoreContext';
 import { MOCK_PRODUCTS, CATEGORIES } from '../constants';
 import ProductCard from '../components/ProductCard';
@@ -26,16 +26,14 @@ const Home: React.FC = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentFrame((prev) => (prev + 1) % HERO_FRAMES.length);
-    }, 4000); // Cycle every 4 seconds for a smooth slideshow effect
+    }, 4000);
     return () => clearInterval(interval);
   }, []);
 
   return (
     <div className="space-y-16 pb-20">
-      {/* Hero Section - Slideshow Background */}
+      {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden bg-gray-900">
-        
-        {/* Animated Background */}
         <div className="absolute inset-0 z-0 bg-gray-900">
           {HERO_FRAMES.map((src, index) => (
              <img
@@ -47,11 +45,9 @@ const Home: React.FC = () => {
                 }`}
              />
           ))}
-          {/* Overlay Gradients for Readability */}
           <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/20 to-gray-900/40"></div>
         </div>
 
-        {/* Content */}
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-10">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 backdrop-blur-md mb-8">
                 <span className="relative flex h-3 w-3">
@@ -112,8 +108,6 @@ const Home: React.FC = () => {
           <div className="w-full md:w-auto">
             <h2 className="text-3xl font-bold text-gray-900 dark:text-white">Trending Now</h2>
             <p className="text-gray-500 dark:text-gray-400 mt-2 mb-6">Top picks for this week</p>
-            
-            {/* Category Filter Chips */}
             <div className="flex gap-2 overflow-x-auto pb-2 no-scrollbar">
               {CATEGORIES.map(category => (
                 <button
@@ -130,37 +124,40 @@ const Home: React.FC = () => {
               ))}
             </div>
           </div>
-          
           <button onClick={() => setView('shop')} className="text-blue-600 hover:text-blue-700 font-medium flex items-center gap-1 group whitespace-nowrap mb-2 md:mb-0">
             View All <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
           </button>
         </div>
-        
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 min-h-[400px]">
-          {filteredProducts.length > 0 ? (
-            filteredProducts.map(product => (
-              <ProductCard key={product.id} product={product} />
-            ))
-          ) : (
-             <div className="col-span-full flex flex-col items-center justify-center text-center p-12 bg-gray-50 dark:bg-slate-800/50 rounded-2xl border border-dashed border-gray-200 dark:border-gray-700">
-               <p className="text-gray-500 dark:text-gray-400 font-medium">No trending items in {selectedCategory} at the moment.</p>
-               <button onClick={() => setSelectedCategory('All')} className="mt-2 text-blue-600 text-sm hover:underline">View All Categories</button>
-             </div>
-          )}
+          {filteredProducts.map(product => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+        </div>
+      </section>
+
+      {/* Payment Methods - Trust Section */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <div className="flex flex-col items-center justify-center text-center space-y-6">
+          <h3 className="text-sm font-bold uppercase tracking-[0.2em] text-gray-400 dark:text-gray-500">Trusted Payment Methods</h3>
+          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12 opacity-60 dark:opacity-40 grayscale hover:grayscale-0 transition-all duration-700">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa" className="h-6 md:h-8 object-contain hover:scale-110 transition-transform" />
+            <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard" className="h-8 md:h-10 object-contain hover:scale-110 transition-transform" />
+            <img src="https://pentagram-production.imgix.net/de996aa4-5343-4200-a466-ab8fc7eafa80/am_amex_01.jpg?auto=compress%2Cformat&fit=min&fm=jpg&q=80&rect=0%2C172%2C3000%2C1875&w=880&fit=crop&fm=jpg&q=70&auto=format&h=548" alt="AMEX" className="h-8 md:h-10 object-contain hover:scale-110 transition-transform mix-blend-multiply dark:mix-blend-normal dark:bg-white/90 dark:rounded p-0.5" />
+            <img src="https://brandlogos.net/wp-content/uploads/2021/11/discover_card-logo-512x512.png" alt="Discover" className="h-10 md:h-14 object-contain hover:scale-110 transition-transform mix-blend-multiply dark:mix-blend-normal dark:bg-white/90 dark:rounded p-0.5" />
+            <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal" className="h-6 md:h-8 object-contain hover:scale-110 transition-transform" />
+            <img src="https://upload.wikimedia.org/wikipedia/commons/b/b0/Apple_Pay_logo.svg" alt="Apple Pay" className="h-6 md:h-8 object-contain dark:invert hover:scale-110 transition-transform" />
+            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Google_Pay_Logo_%282020%29.svg" alt="Google Pay" className="h-6 md:h-8 object-contain hover:scale-110 transition-transform" />
+          </div>
         </div>
       </section>
 
       {/* Testimonials */}
-      <section className="bg-gray-50 dark:bg-slate-900 py-20 relative overflow-hidden">
-        {/* Background Pattern */}
-        <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05]" style={{ backgroundImage: 'radial-gradient(#6b7280 1px, transparent 1px)', backgroundSize: '32px 32px' }}></div>
-        
+      <section className="bg-gray-50 dark:bg-slate-900/50 py-20 relative overflow-hidden backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
            <div className="text-center mb-16">
             <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">Loved by Thousands</h2>
             <p className="text-gray-500 dark:text-gray-400">Don't just take our word for it. Here's what our community has to say.</p>
           </div>
-          
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
@@ -182,7 +179,7 @@ const Home: React.FC = () => {
                 image: "https://randomuser.me/api/portraits/women/68.jpg"
               }
             ].map((testimonial, idx) => (
-              <div key={idx} className="bg-white dark:bg-slate-800 p-8 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 relative hover:-translate-y-1 transition-transform duration-300">
+              <div key={idx} className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-md p-8 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 relative hover:-translate-y-1 transition-transform duration-300">
                 <Quote className="absolute top-8 right-8 text-blue-100 dark:text-slate-700" size={40} />
                 <div className="flex gap-1 mb-6">
                   {[...Array(5)].map((_, i) => (
@@ -204,8 +201,8 @@ const Home: React.FC = () => {
       </section>
 
       {/* Newsletter */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="relative rounded-3xl overflow-hidden bg-gray-900 py-16 px-8 md:px-16 text-center">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+        <div className="relative rounded-3xl overflow-hidden bg-gray-900 py-16 px-8 md:px-16 text-center shadow-2xl">
           <div className="relative z-10">
             <h2 className="text-3xl font-bold text-white mb-4">Stay in the Loop</h2>
             <p className="text-gray-400 mb-8 max-w-2xl mx-auto">Subscribe to our newsletter for exclusive offers, early access to new drops, and design inspiration.</p>
@@ -220,7 +217,6 @@ const Home: React.FC = () => {
               </button>
             </div>
           </div>
-          {/* Background decoration */}
           <div className="absolute top-0 right-0 w-64 h-64 bg-blue-600 rounded-full blur-3xl opacity-20 -translate-y-1/2 translate-x-1/2"></div>
           <div className="absolute bottom-0 left-0 w-64 h-64 bg-purple-600 rounded-full blur-3xl opacity-20 translate-y-1/2 -translate-x-1/2"></div>
         </div>
