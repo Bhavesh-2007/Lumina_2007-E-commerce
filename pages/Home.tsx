@@ -1,19 +1,11 @@
-import React, { useState, useEffect, useMemo } from 'react';
-import { ArrowRight, Truck, Shield, Clock, Star, Quote, CreditCard } from 'lucide-react';
+import React, { useState, useMemo } from 'react';
+import { ArrowRight, Truck, Shield, Clock, Star, Quote, PlayCircle, Sparkles } from 'lucide-react';
 import { useStore } from '../context/StoreContext';
 import { MOCK_PRODUCTS, CATEGORIES } from '../constants';
 import ProductCard from '../components/ProductCard';
 
-const HERO_FRAMES = [
-  "https://i.pinimg.com/736x/7b/c9/b2/7bc9b2b1aad479631309ee864715878e.jpg",
-  "https://i.pinimg.com/736x/d1/d2/5d/d1d25d706774f4062ed4e77a8bad2c17.jpg",
-  "https://i.pinimg.com/736x/bc/6b/0c/bc6b0ceb233e125ef3eae3a2da57f8bf.jpg",
-  "https://i.pinimg.com/1200x/8e/75/ba/8e75bab978067dfd257547ad0e9b8de2.jpg"
-];
-
 const Home: React.FC = () => {
   const { setView } = useStore();
-  const [currentFrame, setCurrentFrame] = useState(0);
   const [selectedCategory, setSelectedCategory] = useState("All");
 
   const filteredProducts = useMemo(() => {
@@ -23,100 +15,106 @@ const Home: React.FC = () => {
     return MOCK_PRODUCTS.filter(p => p.category === selectedCategory).slice(0, 3);
   }, [selectedCategory]);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentFrame((prev) => (prev + 1) % HERO_FRAMES.length);
-    }, 4000);
-    return () => clearInterval(interval);
-  }, []);
+  const lifestyleImages = [
+    "https://i.pinimg.com/736x/aa/30/37/aa3037cb7e93bf26a0cd141072c2941a.jpg",
+    "https://i.pinimg.com/736x/59/4c/92/594c927d6bb99e7fec0458bbdd00baba.jpg",
+    "https://i.pinimg.com/736x/de/61/5e/de615e8da87828121a92e12453c03e98.jpg",
+    "https://i.pinimg.com/736x/f0/b0/c2/f0b0c29c6773362f4c47fd2e7ead127c.jpg",
+    "https://i.pinimg.com/736x/72/6c/1d/726c1d9f7cd66522977c8dfc36906f34.jpg"
+  ];
 
   return (
     <div className="space-y-16 pb-20">
-      {/* Hero Section */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden bg-gray-900">
-        <div className="absolute inset-0 z-0 bg-gray-900">
-          {HERO_FRAMES.map((src, index) => (
-             <img
-                key={src}
-                src={src}
-                alt={`Hero slide ${index + 1}`}
-                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${
-                  index === currentFrame ? 'opacity-60' : 'opacity-0'
-                }`}
-             />
-          ))}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/20 to-gray-900/40"></div>
+      {/* Hero Section with Cinematic Brand Video */}
+      <section className="relative h-[90vh] flex items-center justify-center overflow-hidden bg-white">
+        <div className="absolute inset-0 z-0">
+          {/* SnapCart Cinematic Brand Video */}
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover opacity-90 transition-opacity duration-1000"
+            poster="https://i.ibb.co/7bC9B2B/poster.jpg"
+          >
+            {/* Using a high-quality video that matches the unboxing/product-reveal style from the prompt */}
+            <source src="https://v.ftcdn.net/05/57/34/06/700_F_557340632_79iH7O6X0vD8mC9Xz7WjP8C8nLpB0L4j_ST.mp4" type="video/mp4" />
+          </video>
+          
+          {/* Subtle Studio Lighting Overlays */}
+          <div className="absolute inset-0 bg-gradient-to-t from-white via-white/10 to-transparent"></div>
+          <div className="absolute inset-0 bg-white/10 backdrop-blur-[0.5px]"></div>
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-10">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 backdrop-blur-md mb-8">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-20">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-600/10 border border-orange-600/20 backdrop-blur-md mb-8 animate-slide-in">
                 <span className="relative flex h-3 w-3">
-                  <span className="absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                  <span className="absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-3 w-3 bg-orange-500"></span>
                 </span>
-                <span className="text-sm font-medium text-white">New Collection Dropped</span>
+                <span className="text-sm font-bold text-orange-600">Premium Brand Reveal</span>
             </div>
 
-             <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tight text-white mb-6 leading-tight drop-shadow-2xl">
+             <h1 className="text-6xl md:text-8xl lg:text-9xl font-black tracking-tighter text-gray-900 mb-6 leading-none animate-slide-in">
                 Unbox the <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">Extraordinary</span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 via-orange-500 to-amber-500">Extraordinary</span>
               </h1>
               
-              <p className="mt-4 text-xl md:text-2xl text-gray-200 max-w-2xl mx-auto mb-10 drop-shadow-lg font-light">
-                Discover a world of premium tech, fashion, and lifestyle essentials. Curated for those who demand the best.
+              <p className="mt-4 text-xl md:text-2xl text-gray-600 max-w-2xl mx-auto mb-10 font-medium animate-slide-in" style={{ animationDelay: '0.1s' }}>
+                Join the SnapCart revolution. Experience curated excellence delivered with precision.
               </p>
               
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <div className="flex flex-col sm:flex-row gap-4 justify-center animate-slide-in" style={{ animationDelay: '0.2s' }}>
                 <button 
                   onClick={() => setView('shop')}
-                  className="px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-full shadow-lg hover:shadow-blue-500/30 transition-all hover:scale-105 flex items-center justify-center gap-2 backdrop-blur-sm group"
+                  className="px-12 py-5 bg-orange-600 hover:bg-orange-700 text-white font-black rounded-full shadow-2xl shadow-orange-600/40 transition-all hover:scale-110 flex items-center justify-center gap-3 group"
                 >
-                  Start Shopping <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+                  Shop the Collection <ArrowRight size={22} className="group-hover:translate-x-1 transition-transform" />
                 </button>
                 <button 
-                  onClick={() => window.scrollTo({ top: 800, behavior: 'smooth' })}
-                  className="px-8 py-4 bg-white/10 hover:bg-white/20 text-white border border-white/30 font-bold rounded-full shadow-lg transition-all hover:scale-105 backdrop-blur-md"
+                  onClick={() => window.scrollTo({ top: 900, behavior: 'smooth' })}
+                  className="px-12 py-5 bg-gray-900 text-white font-bold rounded-full shadow-xl transition-all hover:scale-105 flex items-center justify-center gap-3"
                 >
-                  Learn More
+                  <PlayCircle size={22} /> Watch Intro
                 </button>
               </div>
         </div>
       </section>
 
-      {/* Features */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-20 relative z-20">
+      {/* Brand Features Section */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-16 relative z-20">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {[
-            { icon: Truck, title: "Free Shipping", desc: "On all orders over $50" },
-            { icon: Shield, title: "Secure Payment", desc: "100% secure payment gateways" },
-            { icon: Clock, title: "24/7 Support", desc: "Dedicated support anytime" }
+            { icon: Truck, title: "Snap Delivery", desc: "Our signature high-speed logistics network." },
+            { icon: Shield, title: "Vault Security", desc: "Every transaction protected by SnapGuard." },
+            { icon: Clock, title: "Elite Support", desc: "24/7 access to our premium concierge team." }
           ].map((feature, idx) => (
-            <div key={idx} className="p-6 rounded-2xl bg-white/80 dark:bg-slate-800/80 backdrop-blur-md border border-gray-100 dark:border-gray-700 shadow-xl hover:shadow-2xl transition-all hover:-translate-y-1 flex flex-col items-center text-center group cursor-default">
-              <div className="p-4 bg-blue-50 dark:bg-blue-900/30 rounded-2xl text-blue-600 dark:text-blue-400 mb-4 group-hover:scale-110 transition-transform">
-                <feature.icon size={28} />
+            <div key={idx} className="p-10 rounded-[2.5rem] bg-white dark:bg-slate-800 border border-gray-100 dark:border-gray-700 shadow-[0_20px_50px_rgba(0,0,0,0.05)] hover:shadow-orange-500/10 transition-all hover:-translate-y-3 flex flex-col items-center text-center group cursor-default">
+              <div className="p-5 bg-orange-50 dark:bg-orange-900/20 rounded-3xl text-orange-600 dark:text-orange-400 mb-6 group-hover:scale-110 group-hover:bg-orange-100 transition-all duration-500">
+                <feature.icon size={36} />
               </div>
-              <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">{feature.title}</h3>
-              <p className="text-gray-500 dark:text-gray-400">{feature.desc}</p>
+              <h3 className="text-2xl font-black text-gray-900 dark:text-white mb-4">{feature.title}</h3>
+              <p className="text-gray-500 dark:text-gray-400 leading-relaxed text-lg">{feature.desc}</p>
             </div>
           ))}
         </div>
       </section>
 
-      {/* Featured Products */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row justify-between items-end mb-8 gap-6">
+      {/* Featured Drops */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12">
+        <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
           <div className="w-full md:w-auto">
-            <h2 className="text-3xl font-bold text-gray-900 dark:text-white">Trending Now</h2>
-            <p className="text-gray-500 dark:text-gray-400 mt-2 mb-6">Top picks for this week</p>
-            <div className="flex gap-2 overflow-x-auto pb-2 no-scrollbar">
+            <h2 className="text-5xl font-black text-gray-900 dark:text-white tracking-tight">Today's Drops</h2>
+            <p className="text-gray-500 dark:text-gray-400 mt-3 mb-10 text-xl font-light">Exclusive access to SnapCart's most wanted items</p>
+            <div className="flex gap-3 overflow-x-auto pb-6 no-scrollbar">
               {CATEGORIES.map(category => (
                 <button
                   key={category}
                   onClick={() => setSelectedCategory(category)}
-                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 whitespace-nowrap ${
+                  className={`px-8 py-3 rounded-full text-base font-bold transition-all duration-300 whitespace-nowrap ${
                     selectedCategory === category
-                      ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/30'
-                      : 'bg-white dark:bg-slate-800 text-gray-600 dark:text-gray-400 border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-slate-700 hover:border-gray-300 dark:hover:border-gray-600'
+                      ? 'bg-orange-600 text-white shadow-xl shadow-orange-500/40 scale-105'
+                      : 'bg-white dark:bg-slate-800 text-gray-600 dark:text-gray-400 border border-gray-200 dark:border-gray-700 hover:border-orange-500 hover:text-orange-600'
                   }`}
                 >
                   {category}
@@ -124,74 +122,134 @@ const Home: React.FC = () => {
               ))}
             </div>
           </div>
-          <button onClick={() => setView('shop')} className="text-blue-600 hover:text-blue-700 font-medium flex items-center gap-1 group whitespace-nowrap mb-2 md:mb-0">
-            View All <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+          <button onClick={() => setView('shop')} className="text-orange-600 hover:text-orange-700 font-black text-lg flex items-center gap-2 group whitespace-nowrap mb-6 md:mb-0 transition-all">
+            Explore All Drops <ArrowRight size={20} className="group-hover:translate-x-2 transition-transform" />
           </button>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 min-h-[400px]">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 min-h-[400px]">
           {filteredProducts.map(product => (
             <ProductCard key={product.id} product={product} />
           ))}
         </div>
       </section>
 
-      {/* Payment Methods - Trust Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        <div className="flex flex-col items-center justify-center text-center space-y-6">
-          <h3 className="text-sm font-bold uppercase tracking-[0.2em] text-gray-400 dark:text-gray-500">Trusted Payment Methods</h3>
-          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12 opacity-60 dark:opacity-40 grayscale hover:grayscale-0 transition-all duration-700">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa" className="h-6 md:h-8 object-contain hover:scale-110 transition-transform" />
-            <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard" className="h-8 md:h-10 object-contain hover:scale-110 transition-transform" />
-            <img src="https://pentagram-production.imgix.net/de996aa4-5343-4200-a466-ab8fc7eafa80/am_amex_01.jpg?auto=compress%2Cformat&fit=min&fm=jpg&q=80&rect=0%2C172%2C3000%2C1875&w=880&fit=crop&fm=jpg&q=70&auto=format&h=548" alt="AMEX" className="h-8 md:h-10 object-contain hover:scale-110 transition-transform mix-blend-multiply dark:mix-blend-normal dark:bg-white/90 dark:rounded p-0.5" />
-            <img src="https://brandlogos.net/wp-content/uploads/2021/11/discover_card-logo-512x512.png" alt="Discover" className="h-10 md:h-14 object-contain hover:scale-110 transition-transform mix-blend-multiply dark:mix-blend-normal dark:bg-white/90 dark:rounded p-0.5" />
-            <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal" className="h-6 md:h-8 object-contain hover:scale-110 transition-transform" />
-            <img src="https://upload.wikimedia.org/wikipedia/commons/b/b0/Apple_Pay_logo.svg" alt="Apple Pay" className="h-6 md:h-8 object-contain dark:invert hover:scale-110 transition-transform" />
-            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Google_Pay_Logo_%282020%29.svg" alt="Google Pay" className="h-6 md:h-8 object-contain hover:scale-110 transition-transform" />
+      {/* Aesthetic Lifestyle Gallery - NEW SECTION */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-600 text-xs font-bold uppercase tracking-widest mb-4">
+            <Sparkles size={14} /> The SnapCart Aesthetic
+          </div>
+          <h2 className="text-5xl font-black text-gray-900 dark:text-white mb-4">The Aesthetic Edge</h2>
+          <p className="text-gray-500 dark:text-gray-400 text-xl font-light max-w-2xl mx-auto">Crafted for those who define the trend. Our brand vision extends beyond products into a lifestyle of curated excellence.</p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 h-auto md:h-[800px]">
+          {/* Main Large Image */}
+          <div className="md:col-span-8 md:row-span-2 relative group overflow-hidden rounded-[2.5rem] shadow-2xl">
+            <img 
+              src={lifestyleImages[0]} 
+              alt="SnapCart Lifestyle 1" 
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-10">
+              <span className="text-white text-2xl font-black italic tracking-tighter">Precision Audio.</span>
+            </div>
+          </div>
+
+          {/* Top Right */}
+          <div className="md:col-span-4 md:row-span-1 relative group overflow-hidden rounded-[2.5rem] shadow-xl">
+            <img 
+              src={lifestyleImages[1]} 
+              alt="SnapCart Lifestyle 2" 
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            />
+          </div>
+
+          {/* Bottom Row - 3 small images */}
+          <div className="md:col-span-4 md:row-span-1 relative group overflow-hidden rounded-[2.5rem] shadow-xl">
+            <img 
+              src={lifestyleImages[2]} 
+              alt="SnapCart Lifestyle 3" 
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            />
+          </div>
+        </div>
+
+        {/* Second row of bento boxes */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 mt-6 h-auto md:h-[400px]">
+          <div className="md:col-span-6 relative group overflow-hidden rounded-[2.5rem] shadow-xl">
+             <img 
+              src={lifestyleImages[3]} 
+              alt="SnapCart Lifestyle 4" 
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            />
+          </div>
+          <div className="md:col-span-6 relative group overflow-hidden rounded-[2.5rem] shadow-xl">
+             <img 
+              src={lifestyleImages[4]} 
+              alt="SnapCart Lifestyle 5" 
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            />
           </div>
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section className="bg-gray-50 dark:bg-slate-900/50 py-20 relative overflow-hidden backdrop-blur-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">Loved by Thousands</h2>
-            <p className="text-gray-500 dark:text-gray-400">Don't just take our word for it. Here's what our community has to say.</p>
+      {/* Secure Infrastructure Section */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 bg-gray-50 dark:bg-slate-900/30 rounded-[3rem]">
+        <div className="flex flex-col items-center justify-center text-center space-y-12">
+          <h3 className="text-sm font-black uppercase tracking-[0.5em] text-orange-600/60">Certified Global Payments</h3>
+          <div className="flex flex-wrap justify-center items-center gap-12 md:gap-20 opacity-50 dark:opacity-30 grayscale hover:grayscale-0 transition-all duration-700">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa" className="h-6 md:h-8" />
+            <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard" className="h-10 md:h-12" />
+            <img src="https://pentagram-production.imgix.net/de996aa4-5343-4200-a466-ab8fc7eafa80/am_amex_01.jpg?auto=compress%2Cformat&fit=min&fm=jpg&q=80&rect=0%2C172%2C3000%2C1875&w=880&fit=crop&fm=jpg&q=70&auto=format&h=548" alt="AMEX" className="h-10 md:h-12 dark:invert" />
+            <img src="https://brandlogos.net/wp-content/uploads/2021/11/discover_card-logo-512x512.png" alt="Discover" className="h-16 md:h-24" />
+            <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal" className="h-8 md:h-10" />
+            <img src="https://upload.wikimedia.org/wikipedia/commons/b/b0/Apple_Pay_logo.svg" alt="Apple Pay" className="h-8 md:h-10 dark:invert" />
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        </div>
+      </section>
+
+      {/* Community Voice */}
+      <section className="py-24 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+           <div className="text-center mb-20">
+            <h2 className="text-5xl font-black text-gray-900 dark:text-white mb-6">The SnapCart Standard</h2>
+            <p className="text-gray-500 dark:text-gray-400 text-xl font-light">Why over 100k customers choose SnapCart Shop.</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
             {[
               {
-                text: "The quality of the products is unmatched. I've bought headphones and clothes, and both were perfect.",
+                text: "SnapCart isn't just a store, it's an experience. The brand video promised quality, and the product delivered more.",
                 author: "Sarah Johnson",
-                role: "Verified Buyer",
+                role: "Founding Member",
                 image: "https://randomuser.me/api/portraits/women/44.jpg"
               },
               {
-                text: "Customer service was incredibly helpful when I needed to exchange a size. Highly recommended!",
+                text: "The unboxing experience is what sets them apart. Clean, premium, and sustainable packaging. Simply the best.",
                 author: "Michael Chen",
-                role: "Tech Enthusiast",
+                role: "Verified Curator",
                 image: "https://randomuser.me/api/portraits/men/32.jpg"
               },
               {
-                text: "Montraa has completely changed how I shop online. The AI assistant actually gives good advice.",
+                text: "I trust SnapCart for all my high-end electronics. Their vault security gives me total peace of mind.",
                 author: "Jessica Williams",
-                role: "Fashion Blogger",
+                role: "Tech Lead",
                 image: "https://randomuser.me/api/portraits/women/68.jpg"
               }
             ].map((testimonial, idx) => (
-              <div key={idx} className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-md p-8 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 relative hover:-translate-y-1 transition-transform duration-300">
-                <Quote className="absolute top-8 right-8 text-blue-100 dark:text-slate-700" size={40} />
-                <div className="flex gap-1 mb-6">
+              <div key={idx} className="bg-white dark:bg-slate-800 p-12 rounded-[3rem] shadow-2xl border border-gray-100 dark:border-gray-700 relative hover:-translate-y-4 transition-all duration-500 group">
+                <Quote className="absolute top-12 right-12 text-orange-600/10 group-hover:text-orange-600/20 transition-colors" size={64} />
+                <div className="flex gap-1 mb-8">
                   {[...Array(5)].map((_, i) => (
-                    <Star key={i} size={16} className="text-yellow-400 fill-yellow-400" />
+                    <Star key={i} size={20} className="text-orange-500 fill-orange-500" />
                   ))}
                 </div>
-                <p className="text-gray-600 dark:text-gray-300 mb-6 italic relative z-10">"{testimonial.text}"</p>
-                <div className="flex items-center gap-4">
-                  <img src={testimonial.image} alt={testimonial.author} className="w-12 h-12 rounded-full object-cover ring-2 ring-blue-100 dark:ring-blue-900" />
+                <p className="text-gray-700 dark:text-gray-200 mb-10 italic text-xl leading-relaxed relative z-10">"{testimonial.text}"</p>
+                <div className="flex items-center gap-5 pt-8 border-t border-gray-100 dark:border-gray-700">
+                  <img src={testimonial.image} alt={testimonial.author} className="w-16 h-16 rounded-full object-cover ring-4 ring-orange-500/20 shadow-xl" />
                   <div>
-                    <h4 className="font-bold text-gray-900 dark:text-white">{testimonial.author}</h4>
-                    <span className="text-xs text-blue-500 font-medium uppercase tracking-wide">{testimonial.role}</span>
+                    <h4 className="font-black text-gray-900 dark:text-white text-xl">{testimonial.author}</h4>
+                    <span className="text-sm text-orange-600 font-black uppercase tracking-widest">{testimonial.role}</span>
                   </div>
                 </div>
               </div>
@@ -200,25 +258,26 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* Newsletter */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
-        <div className="relative rounded-3xl overflow-hidden bg-gray-900 py-16 px-8 md:px-16 text-center shadow-2xl">
+      {/* CTA Section */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+        <div className="relative rounded-[4rem] overflow-hidden bg-gray-900 py-32 px-8 md:px-20 text-center shadow-2xl">
           <div className="relative z-10">
-            <h2 className="text-3xl font-bold text-white mb-4">Stay in the Loop</h2>
-            <p className="text-gray-400 mb-8 max-w-2xl mx-auto">Subscribe to our newsletter for exclusive offers, early access to new drops, and design inspiration.</p>
-            <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+            <h2 className="text-5xl md:text-7xl font-black text-white mb-8 tracking-tighter">Ready for the <br/><span className="text-orange-500">Extraordinary?</span></h2>
+            <p className="text-gray-400 mb-16 max-w-2xl mx-auto text-2xl font-light">Secure your spot in our next drop and never settle for ordinary again.</p>
+            <div className="flex flex-col sm:flex-row gap-6 max-w-xl mx-auto">
               <input 
                 type="email" 
-                placeholder="Enter your email" 
-                className="flex-1 px-6 py-3 rounded-full bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 backdrop-blur-sm transition-all"
+                placeholder="Your email address" 
+                className="flex-1 px-10 py-5 rounded-full bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-orange-500 backdrop-blur-xl transition-all text-xl"
               />
-              <button className="px-8 py-3 bg-white text-gray-900 font-bold rounded-full hover:bg-gray-100 transition-colors shadow-lg">
-                Subscribe
+              <button className="px-12 py-5 bg-orange-600 text-white font-black rounded-full hover:bg-orange-700 transition-all shadow-2xl shadow-orange-600/40 transform hover:-translate-y-2 text-xl">
+                Join SnapCart
               </button>
             </div>
           </div>
-          <div className="absolute top-0 right-0 w-64 h-64 bg-blue-600 rounded-full blur-3xl opacity-20 -translate-y-1/2 translate-x-1/2"></div>
-          <div className="absolute bottom-0 left-0 w-64 h-64 bg-purple-600 rounded-full blur-3xl opacity-20 translate-y-1/2 -translate-x-1/2"></div>
+          {/* Brand Glow Effects */}
+          <div className="absolute top-0 right-0 w-[50%] h-[50%] bg-orange-600/30 rounded-full blur-[160px] animate-pulse"></div>
+          <div className="absolute bottom-0 left-0 w-[50%] h-[50%] bg-amber-600/20 rounded-full blur-[160px] animate-pulse" style={{ animationDelay: '3s' }}></div>
         </div>
       </section>
     </div>

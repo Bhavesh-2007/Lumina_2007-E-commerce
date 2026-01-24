@@ -45,7 +45,7 @@ export interface User {
   wishlist: number[];
 }
 
-export type ViewState = 'home' | 'shop' | 'product-details' | 'cart' | 'checkout' | 'admin' | 'profile' | 'create-shop' | 'login';
+export type ViewState = 'home' | 'shop' | 'product-details' | 'cart' | 'checkout' | 'admin' | 'profile' | 'create-shop' | 'login' | 'signup';
 
 export interface ChatMessage {
   id: string;

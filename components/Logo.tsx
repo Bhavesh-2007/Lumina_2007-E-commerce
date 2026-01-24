@@ -1,33 +1,16 @@
 import React from 'react';
 
 export const Logo: React.FC<{ className?: string }> = ({ className = "w-8 h-8" }) => (
-  <svg 
-    className={className} 
-    viewBox="0 0 40 40" 
-    xmlns="http://www.w3.org/2000/svg"
-    fill="none"
-  >
-    {/* Stylized Shopping Cart / 'M' Geometric Hybrid */}
-    <path 
-      d="M6 14H11L18 28L24 17L30 28L37 14" 
-      stroke="currentColor" 
-      strokeWidth="3.2" 
-      strokeLinecap="round" 
-      strokeLinejoin="round"
+  <div className={`${className} flex items-center justify-center overflow-hidden rounded-lg bg-white shadow-sm ring-1 ring-black/5 p-1`}>
+    <img 
+      src="https://i.ibb.co/68WvH0F/snapcart-logo.png" 
+      alt="SnapCart Shop Logo" 
+      className="w-full h-full object-contain"
+      style={{ filter: 'contrast(1.1) saturate(1.1)' }}
+      onError={(e) => {
+        // Fallback to a stylistically similar representation if the primary link fails
+        e.currentTarget.src = "https://raw.githubusercontent.com/ai-gen-images/logos/main/snapcart_logo_v2.png";
+      }}
     />
-    
-    {/* Wheels positioned precisely below the lower vertices */}
-    <circle 
-      cx="18" 
-      cy="35" 
-      r="2.5" 
-      fill="currentColor" 
-    />
-    <circle 
-      cx="30" 
-      cy="35" 
-      r="2.5" 
-      fill="currentColor" 
-    />
-  </svg>
+  </div>
 );

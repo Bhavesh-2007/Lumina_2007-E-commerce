@@ -40,7 +40,7 @@ const CreateShop: React.FC = () => {
           
           {/* Decor element */}
           <div className="absolute top-0 right-0 p-4 opacity-50">
-             <Sparkles className="text-blue-500" size={40} />
+             <Sparkles className="text-orange-500" size={40} />
           </div>
 
           {step === 1 ? (
@@ -55,7 +55,7 @@ const CreateShop: React.FC = () => {
                   Launch Your Brand
                 </h1>
                 <p className="text-gray-600 dark:text-gray-200">
-                  Join thousands of sellers on Montraa. Setup takes less than 2 minutes.
+                  Join thousands of sellers on SnapCart. Setup takes less than 2 minutes.
                 </p>
               </div>
 
@@ -68,13 +68,13 @@ const CreateShop: React.FC = () => {
                     value={shopName}
                     onChange={(e) => setShopName(e.target.value)}
                     placeholder="e.g. Neon Horizon"
-                    className="w-full px-5 py-4 bg-white/50 dark:bg-slate-900/50 border border-gray-200 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all placeholder-gray-400 dark:text-white"
+                    className="w-full px-5 py-4 bg-white/50 dark:bg-slate-900/50 border border-gray-200 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-transparent outline-none transition-all placeholder-gray-400 dark:text-white"
                   />
                 </div>
 
                 <div className="space-y-2">
                    <label className="text-sm font-semibold text-gray-700 dark:text-gray-300 ml-1">Category</label>
-                   <select className="w-full px-5 py-4 bg-white/50 dark:bg-slate-900/50 border border-gray-200 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition-all dark:text-white cursor-pointer appearance-none">
+                   <select className="w-full px-5 py-4 bg-white/50 dark:bg-slate-900/50 border border-gray-200 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-orange-500 outline-none transition-all dark:text-white cursor-pointer appearance-none">
                      <option>Fashion & Apparel</option>
                      <option>Electronics & Gadgets</option>
                      <option>Home & Living</option>
@@ -83,7 +83,7 @@ const CreateShop: React.FC = () => {
                 </div>
 
                 <div className="border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-xl p-6 flex flex-col items-center justify-center text-center cursor-pointer hover:bg-white/50 dark:hover:bg-slate-800/50 transition-colors group">
-                  <Upload className="text-gray-400 group-hover:text-blue-500 mb-2 transition-colors" size={24} />
+                  <Upload className="text-gray-400 group-hover:text-orange-500 mb-2 transition-colors" size={24} />
                   <span className="text-sm text-gray-500 dark:text-gray-400 font-medium">Upload Shop Logo</span>
                   <span className="text-xs text-gray-400 mt-1">(Optional)</span>
                 </div>
@@ -115,7 +115,7 @@ const CreateShop: React.FC = () => {
               <div className="pt-4 flex flex-col gap-3">
                  <button 
                   onClick={() => setView('admin')}
-                  className="w-full py-3 bg-blue-600 text-white font-bold rounded-xl shadow-lg hover:bg-blue-700 transition-colors"
+                  className="w-full py-3 bg-orange-600 text-white font-bold rounded-xl shadow-lg hover:bg-orange-700 transition-colors"
                 >
                   Go to Seller Dashboard
                 </button>
@@ -132,7 +132,7 @@ const CreateShop: React.FC = () => {
         
         {/* Bottom text */}
         <p className="text-center text-white/80 dark:text-white/40 mt-6 text-sm font-medium drop-shadow-md">
-          Powered by Montraa Commerce Engine
+          Powered by SnapCart Commerce Engine
         </p>
       </div>
     </div>

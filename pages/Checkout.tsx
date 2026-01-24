@@ -107,7 +107,7 @@ const Checkout: React.FC = () => {
                     <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa" className="h-4" />
                     <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard" className="h-4" />
                     <img src="https://pentagram-production.imgix.net/de996aa4-5343-4200-a466-ab8fc7eafa80/am_amex_01.jpg?auto=compress%2Cformat&fit=min&fm=jpg&q=80&rect=0%2C172%2C3000%2C1875&w=880&fit=crop&fm=jpg&q=70&auto=format&h=548" alt="AMEX" className="h-4 rounded-sm mix-blend-multiply dark:mix-blend-normal dark:bg-white/90" />
-                    <img src="https://brandlogos.net/wp-content/uploads/2021/11/discover_card-logo-512x512.png" alt="Discover" className="h-7 self-center mix-blend-multiply dark:mix-blend-normal dark:bg-white/90 rounded-sm" />
+                    <img src="https://brandlogos.net/wp-content/uploads/2021/11/discover_card-logo-512x512.png" alt="Discover" className="h-8 self-center mix-blend-multiply dark:mix-blend-normal dark:bg-white/90 rounded-sm transition-transform hover:scale-110" />
                   </div>
                 </div>
                 <input type="text" placeholder="Card Number" className="p-4 bg-gray-50 dark:bg-slate-900/50 border border-gray-200 dark:border-gray-700 rounded-xl w-full focus:ring-2 focus:ring-blue-500 outline-none transition-all dark:text-white" />
